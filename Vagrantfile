@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "Distributed Systems" do |dist|
   end
   config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.synced_folder "./target/war/", "/var/lib/tomcat7/webapps"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
