@@ -9,34 +9,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ShopApplication.class)
 @WebAppConfiguration
-public class ShopApplicationTests {
 
-	private ShopApplication Shop = new ShopApplication();
+public class DatabaseTests {
 
-	@Test
-	public void contextLoads(){
-	}
+    @Test
+    public void openDatabase(){
+        //TODO
 
-	@Test
-	public void testHomePage(){
-		System.out.println(Shop.toString());
-
-	}
-
-	@Test
-	public void testLogIn(){
-		//TODO
-
-	}
-	@Test
-	public void testNewOrder(){
-		//TODO
-
-	}
-	@Test
-	public void testLogOut(){
-		//TODO
-
-	}
+    }
 
 }
