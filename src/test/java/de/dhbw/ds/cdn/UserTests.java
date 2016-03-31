@@ -56,4 +56,21 @@ public class UserTests {
     public void setRoleTest(){
 
     }
+
+    @Test
+    public void setUserTest(){
+        String password = "Musterpw";
+        String username = "Mustermann";
+        User testuser = new User();
+
+        testuser.setPassword(password);
+        testuser.setName(username);
+
+        User user = new User(testuser);
+        System.out.println(user);
+
+        org.junit.Assert.assertEquals(password, user.getPassword());
+        org.junit.Assert.assertEquals(username, user.getName());
+
+    }
 }
