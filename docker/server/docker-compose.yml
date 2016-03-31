@@ -1,0 +1,14 @@
+loadbalancer:
+  image: jwilder/nginx-proxy
+  links:
+   - tomcat
+  volumes:
+   - /var/run/docker.sock:/tmp/docker.sock:ro
+  ports:
+   - "80:80"
+tomcat:
+  image: tomcat:latest
+  expose:
+    - "8080"
+  environment:
+   - VIRTUAL_HOST=127.0.0.1
