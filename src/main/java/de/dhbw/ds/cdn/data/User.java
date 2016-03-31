@@ -34,11 +34,6 @@ public class User {
     @NotEmpty
     private String password;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
-    private Set<Role> roles = new HashSet<Role>();
-
     public User() {
     }
 
@@ -48,7 +43,6 @@ public class User {
         this.name = user.getName();
         this.login = user.getLogin();
         this.password = user.getPassword();
-        this.roles = user.getRoles();
     }
 
     public Integer getId() {
@@ -83,12 +77,5 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
 }
