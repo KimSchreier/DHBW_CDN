@@ -1,7 +1,6 @@
 package de.dhbw.ds.cdn;
 
 import de.dhbw.ds.cdn.data.User;
-import de.dhbw.ds.cdn.data.Role;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration;
@@ -52,10 +51,6 @@ public class UserTests {
         org.junit.Assert.assertEquals(password, testuser.getPassword());
     }
 
-    @Test
-    public void setRoleTest(){
-
-    }
 
     @Test
     public void setUserTest(){
