@@ -1,13 +1,15 @@
 cass0:
-    image: abh1nav/cassandra:latest
-    ports:
-      - "9042:9042"
-      - "9160:9160"
-      - "7199:7199"
-
+    image: tobert/cassandra
+    environment:
+      - MAX_HEAP_SIZE=512M
+      - HEAP_SIZE=256M
+    command: -name "Awesome"
 cass-node:
-    image: abh1nav/cassandra:latest
+    image: tobert/cassandra
     links:
       -  cass0:seed
     environment:
       - SEED=seed
+      - MAX_HEAP_SIZE=512M
+      - HEAP_SIZE=256M
+    command: -name "Awesome" -seeds seed
