@@ -1,0 +1,15 @@
+cass0:
+    image: tobert/cassandra
+    environment:
+      - MAX_HEAP_SIZE=512M
+      - HEAP_SIZE=256M
+    command: -name "Awesome"
+cass-node:
+    image: tobert/cassandra
+    links:
+      -  cass0:seed
+    environment:
+      - SEED=seed
+      - MAX_HEAP_SIZE=512M
+      - HEAP_SIZE=256M
+    command: -name "Awesome" -seeds seed

@@ -18,23 +18,23 @@ public class ShopApplicationTests {
 	}
 
 	@Test
-	public void testHomePage(){
+	public void homePageTest(){
 		System.out.println(Shop.toString());
 
 	}
 
 	@Test
-	public void testLogIn(){
+	public void logInTest(){
 		//TODO
 
 	}
 	@Test
-	public void testNewOrder(){
+	public void newOrderTest(){
 		//TODO
 
 	}
 	@Test
-	public void testLogOut(){
+	public void logOutTest(){
 		//TODO
 
 	}
