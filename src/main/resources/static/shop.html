@@ -1,0 +1,21 @@
+<h1>Web shop</h1>
+<div ng-show="authenticated">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Add</th>
+        </tr>
+
+        <tr ng-repeat="product in products">
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price}} €</td>
+            <td><input type="button" value="Add" ng-click="addItem(item.ID)" /></td>
+        </tr>
+    </table>
+    </div>
+<div  class="alert alert-danger" ng-show="!authenticated">
+    <p>Login to see the shop</p>
+</div>

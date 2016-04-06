@@ -1,0 +1,28 @@
+<h1>Your Cart</h1>
+<div ng-show="authenticated">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Remove</th>
+        </tr>
+
+        <tr ng-repeat="product in cart.products">
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price * product.quantity}} €</td>
+            <td><input type="button" value="Remove" ng-click="removeItem(item.ID)" /></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td> Total: {{totalPrice()}}</td>
+            <td><input type="button" value="Order" ng-click="order()" /></td>
+        </tr>
+    </table>
+</div>
+<div class="alert alert-danger" ng-show="!authenticated">
+    <p>Login to see your cart</p>
+</div>
