@@ -13,11 +13,11 @@ public class Cart {
     @PrimaryKey
     private UUID id;
 
-    public ArrayList<String> getProducts() {
+    public ArrayList<UUID> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<String> products) {
+    public void setProducts(ArrayList<UUID> products) {
         this.products = products;
     }
 
@@ -38,7 +38,7 @@ public class Cart {
     }
 
     @Column(value = "products")
-    private ArrayList<String> products;
+    private ArrayList<UUID> products;
 
     @Column(value = "user")
     private UUID userId;
