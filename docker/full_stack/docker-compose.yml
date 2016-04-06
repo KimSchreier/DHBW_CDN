@@ -30,3 +30,8 @@ cass-node:
       - MAX_HEAP_SIZE=512M
       - HEAP_SIZE=256M
     command: -name "Awesome" -seeds seed
+provision:
+  build: ./provisioneer
+  links:
+    - cass0:cassandra
+  command: cassandra
