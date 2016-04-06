@@ -1,6 +1,6 @@
 <h1>Your Cart</h1>
 <div ng-show="authenticated">
-    <table>
+    <table class="table table-hover">
         <tr>
             <th>Product</th>
             <th>Quantity</th>
@@ -12,14 +12,17 @@
             <td>{{product.name}}</td>
             <td>{{product.quantity}}</td>
             <td>{{product.price * product.quantity}} €</td>
-            <td><input type="button" value="Remove" ng-click="removeItem(item.ID)" /></td>
+            <td><input type="button" value="-" ng-click="removeItem(item.ID)" /></td>
         </tr>
 
         <tr>
             <td></td>
             <td></td>
             <td> Total: {{totalPrice()}}</td>
-            <td><input type="button" value="Order" ng-click="order()" /></td>
+            <td>
+                <input type="button" class="btn btn-success" value="Save" ng-click="save()" />
+                <input type="button" class="btn btn-primary" value="Order" ng-click="order()" />
+            </td>
         </tr>
     </table>
 </div>
