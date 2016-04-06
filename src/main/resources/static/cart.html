@@ -8,10 +8,10 @@
             <th>Remove</th>
         </tr>
 
-        <tr ng-repeat="product in cart.products">
-            <td>{{product.name}}</td>
+        <tr ng-repeat="product in cart">
+            <td>{{product.titel}}</td>
             <td>{{product.quantity}}</td>
-            <td>{{product.price * product.quantity}} €</td>
+            <td>{{product.price}} €</td>
             <td><input type="button" value="-" ng-click="removeItem(item.ID)" /></td>
         </tr>
 

@@ -21,10 +21,20 @@ angular.module('hello', [ 'ngRoute' ])
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
   })
-  .controller('home', function($scope, $http) {
+  .controller('home', function($rootScope, $scope, $http) {
       $scope.getProducts = function () {
           $http.get('/products').success(function(data) {
               $scope.products = data;
+          });
+      };
+      $scope.addItem = function (id) {
+          $http.get('/addToCart?id='+id+'user={{user.id}}').success(function(data) {
+              $rootScope.cart = data;
+          });
+      };
+      $scope.removeItem = function (id) {
+          $http.get('/removeFromCart?id='+id+'user={{user.id}}').success(function(data) {
+              $rootScope.cart = data;
           });
       };
   })

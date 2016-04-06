@@ -9,10 +9,10 @@
         </tr>
 
         <tr ng-repeat="product in products">
-            <td>{{product.name}}</td>
+            <td>{{product.titel}}</td>
             <td><input type="number" ng-model="product.quantity" min="1" required=true></td>
             <td>{{product.price}} 	&#8364;</td>
-            <td><input type="button" value="+" ng-click="addItem(item.ID)" /></td>
+            <td><input type="button" value="+" ng-click="addItem(product.id)" /></td>
         </tr>
     </table>
     </div>
