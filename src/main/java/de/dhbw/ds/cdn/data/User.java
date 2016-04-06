@@ -1,43 +1,29 @@
 package de.dhbw.ds.cdn.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.cassandra.mapping.Column;
 import org.springframework.data.cassandra.mapping.PrimaryKey;
 import org.springframework.data.cassandra.mapping.Table;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
-@Table
+@Table(value = "users")
 public class User {
 
     @PrimaryKey
-    @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @NotEmpty
+    @Column(value = "name")
     private String name;
 
-    @NotEmpty
-    @Column(unique = true, nullable = false)
+    @Column(value = "login")
     private String login;
 
-    @NotEmpty
+    @Column(value = "password")
     private String password;
 
+    @Column(value = "roles")
     private ArrayList<String> rights;
 
     public User() {
