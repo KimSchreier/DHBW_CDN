@@ -1,22 +1,22 @@
 <h1>Your Purchases</h1>
 <div ng-show="authenticated">
+
+    <div ng-repeat="purchase in purchases">
+
     <table class="table table-striped">
         <tr>
+            <th>{{purchase.creationDate}}</th>
             <th>Product</th>
-            <th>Quantity</th>
             <th>Price</th>
-            <td>Total</td>
-            <th>Date</th>
         </tr>
 
-        <tr ng-repeat="product in products">
-            <td>{{product.name}}</td>
-            <td>{{product.quantity}}</td>
+        <tr ng-repeat="product in purchase.products">
+            <td></td>
+            <td>{{product.title}}</td>
             <td>{{product.price}} 	&#8364;</td>
-            <td>{{product.quantity * product.price}}</td>
-            <td>{{purchase.date}}</td>
         </tr>
     </table>
+    </div>
 </div>
 <div  class="alert alert-danger" ng-show="!authenticated">
     <p>Login to see your purchases</p>
