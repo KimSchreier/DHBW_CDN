@@ -14,5 +14,5 @@ import java.util.UUID;
 public interface ProductRepository extends CassandraRepository<Product> {
 
     @Query("SELECT*FROM product WHERE id=?0")
-    User findById(UUID id);
+    Product findById(UUID id);
 }
