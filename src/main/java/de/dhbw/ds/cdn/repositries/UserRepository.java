@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface UserRepository extends CassandraRepository<User> {
 
-    @Query("SELECT*FROM users WHERE login=?0")
+    @Query("SELECT*FROM users WHERE login=?0 ALLOW FILTERING")
     User findByLogin(String login);
 
     @Query("SELECT*FROM users WHERE id=?0")

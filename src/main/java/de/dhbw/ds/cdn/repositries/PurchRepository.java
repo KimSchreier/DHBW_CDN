@@ -13,5 +13,5 @@ import java.util.UUID;
 public interface PurchRepository extends CassandraRepository<Purches> {
 
     @Query("SELECT*FROM purches WHERE user=?0")
-    Purches findByUserId(UUID id);
+    Iterable<Purches> findByUserId(UUID id);
 }

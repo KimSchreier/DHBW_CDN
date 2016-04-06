@@ -7,15 +7,26 @@ angular.module('hello', [ 'ngRoute' ])
 	}).when('/login', {
 		templateUrl : 'login.html',
 		controller : 'navigation'
+    }).when('/shop', {
+        templateUrl : 'shop.html',
+        controller : 'home'
+    }).when('/cart', {
+        templateUrl : 'cart.html',
+        controller : 'home'
+    }).when('/purches', {
+        templateUrl : 'purches.html',
+        controller : 'home'
 	}).otherwise('/');
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
   })
   .controller('home', function($scope, $http) {
-    $http.get('/resource/').success(function(data) {
-      $scope.greeting = data;
-    })
+      $scope.getProducts = function () {
+          $http.get('/products').success(function(data) {
+              $scope.products = data;
+          });
+      };
   })
 .controller('navigation',
 
@@ -23,27 +34,23 @@ angular.module('hello', [ 'ngRoute' ])
 
   $scope.logout = function() {
 	    $rootScope.authenticated = false;
-        $cookies.remove('Authorization');
+        $rootScope.user = {};
 	}
 
   $scope.credentials = {};
   $scope.login = function() {
-      credentials.grant_type='password';
-      credentials.scope='read write';
-      credentials.client_secret='123456';
-      credentials.client_id='clientapp';
       $http({
           method: 'POST',
-          url: '/user',
+          url: '/userLogin',
           headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
           },
-          data: credentials
+          data: $scope.credentials
       }).then(function successCallback(response) {
           $location.path("/");
           $scope.error = false;
-          $cookies.setAttribute('Authorization',response.data.token_type+' '+response.data.access_token);
+          $rootScope.user = response.data;
           $rootScope.authenticated = true;
       }, function errorCallback(response) {
           $location.path("/login");
