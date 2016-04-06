@@ -13,16 +13,20 @@ import javax.persistence.ManyToMany;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.cassandra.mapping.PrimaryKey;
+import org.springframework.data.cassandra.mapping.Table;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
-@Entity
+@Table
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @PrimaryKey
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @NotEmpty
     private String name;
@@ -34,6 +38,8 @@ public class User {
     @NotEmpty
     private String password;
 
+    private ArrayList<String> rights;
+
     public User() {
     }
 
@@ -43,13 +49,14 @@ public class User {
         this.name = user.getName();
         this.login = user.getLogin();
         this.password = user.getPassword();
+        this.rights = user.getRights();
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -75,6 +82,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ArrayList<String> getRights() {
+        return rights;
+    }
+
+    public void setRights(ArrayList<String> rights) {
+        this.rights = rights;
     }
 
 
