@@ -1,23 +1,19 @@
 <h1>Awesome shop</h1>
-<div ng-show="authenticated" data-ng-init="getProducts()">
-    <table class="table table-hover">
+<div ng-show="authenticated">
+    <table class="table table-striped">
         <tr>
             <th>Product</th>
-            <th>Quantity</th>
             <th>Price</th>
             <th>Add</th>
         </tr>
 
         <tr ng-repeat="product in products">
             <td>{{product.name}}</td>
-            <td><input type="number" ng-model="product.quantity" min="1" required=true></td>
             <td>{{product.price}} 	&#8364;</td>
-            <td><input type="button" value="+" ng-click="addItem(item.ID)" /></td>
+            <td><input type="button" value="+" ng-click="addItem(product.ID)" /></td>
         </tr>
     </table>
     </div>
-<div ng-show="!authenticated">
-    <div  class="alert alert-danger">
-        <p>Login to see the shop</p>
-    </div>
+<div  class="alert alert-danger" ng-show="!authenticated">
+    <p>Login to see the shop</p>
 </div>
