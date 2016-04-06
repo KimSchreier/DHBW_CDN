@@ -1,0 +1,32 @@
+loadbalancer:
+  image: jwilder/nginx-proxy
+  links:
+   - tomcat
+  volumes:
+   - /var/run/docker.sock:/tmp/docker.sock:ro
+  ports:
+   - "80:80"
+tomcat:
+  image: tomcat:latest
+  expose:
+    - "8080"
+  links:
+    - cass0:cassandra
+    - cass-node:cass-node
+  environment:
+   - VIRTUAL_HOST=127.0.0.1
+cass0:
+    image: tobert/cassandra
+    environment:
+      - MAX_HEAP_SIZE=512M
+      - HEAP_SIZE=256M
+    command: -name "Awesome"
+cass-node:
+    image: tobert/cassandra
+    links:
+      -  cass0:seed
+    environment:
+      - SEED=seed
+      - MAX_HEAP_SIZE=512M
+      - HEAP_SIZE=256M
+    command: -name "Awesome" -seeds seed
