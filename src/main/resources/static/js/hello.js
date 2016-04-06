@@ -13,8 +13,8 @@ angular.module('hello', [ 'ngRoute' ])
     }).when('/cart', {
         templateUrl : 'cart.html',
         controller : 'home'
-    }).when('/purches', {
-        templateUrl : 'purches.html',
+    }).when('/purch', {
+        templateUrl : 'purchase.html',
         controller : 'home'
 	}).otherwise('/');
 
@@ -27,9 +27,25 @@ angular.module('hello', [ 'ngRoute' ])
               $scope.products = data;
           });
       };
+      $scope.getPurches = function () {
+          $http.get('/purches?user='+$rootScope.user.id).success(function(data) {
+              $rootScope.purches = data;
+          });
+      };
+      $scope.getCart = function () {
+          $http.get('/getCart?user='+$rootScope.user.id).success(function(data) {
+              $rootScope.cart = data;
+          });
+      };
       $scope.addItem = function (id) {
           $http.get('/addToCart?id='+id+'&user='+$rootScope.user.id).success(function(data) {
               $rootScope.cart = data;
+          });
+      };
+      $scope.newPurche = function () {
+          $rootScope.cart = [];
+          $http.get('/placePurches?user='+$rootScope.user.id).success(function(data) {
+              $rootScope.purches = data;
           });
       };
       $scope.removeItem = function (id) {

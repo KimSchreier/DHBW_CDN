@@ -69,5 +69,20 @@ public class CartController {
             prod.add(productRepository.findById(uuid));
         }
         return prod;
+
+    }
+
+    @RequestMapping("/getCart")
+    public Iterable<Product> getCart(@RequestParam(value="user") String sid){
+        UUID id = UUID.fromString(sid);
+        Cart cart = cartRepository.findByUserId(id);
+        List<Product> prod = new ArrayList<>();
+        if (cart == null){
+            return new ArrayList<>();
+        }
+        for(UUID uuid : cart.getProducts()){
+            prod.add(productRepository.findById(uuid));
+        }
+        return prod;
     }
 }

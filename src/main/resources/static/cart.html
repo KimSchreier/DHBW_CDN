@@ -1,6 +1,6 @@
 <h1>Your Cart</h1>
 <div ng-show="authenticated">
-    <table class="table table-striped">
+    <table class="table table-striped" data-ng-init="getCart()">
         <tr>
             <th>Product</th>
             <th>Price</th>
@@ -8,7 +8,7 @@
         </tr>
 
         <tr ng-repeat="product in cart">
-            <td>{{product.title}}</td>
+            <td>{{product.titel}}</td>
             <td>{{product.price}} €</td>
             <td><input type="button" value="-" ng-click="removeItem(product.id)" /></td>
         </tr>
@@ -17,7 +17,7 @@
             <td></td>
             <td> Total: {{totalPrice()}}</td>
             <td>
-                <input type="button" class="btn btn-primary" value="Order" ng-click="order()" />
+                <input type="button" class="btn btn-primary" value="Order" ng-click="newPurche()" />
             </td>
         </tr>
     </table>

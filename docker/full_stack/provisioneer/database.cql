@@ -33,3 +33,5 @@ CREATE TABLE IF NOT EXISTS shop.purches (
     PRIMARY KEY (id)
 );
 
+CREATE INDEX on shop.purches (user);
+

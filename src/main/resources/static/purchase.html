@@ -1,18 +1,18 @@
 <h1>Your Purchases</h1>
-<div ng-show="authenticated">
+<div ng-show="authenticated" data-ng-init="getPurches()">
 
-    <div ng-repeat="purchase in purchases">
+    <div ng-repeat="purche in purches">
 
     <table class="table table-striped">
         <tr>
-            <th>{{purchase.creationDate}}</th>
+            <th>{{purche.creationDate}}</th>
             <th>Product</th>
             <th>Price</th>
         </tr>
 
-        <tr ng-repeat="product in purchase.products">
+        <tr ng-repeat="product in purche.products">
             <td></td>
-            <td>{{product.title}}</td>
+            <td>{{product.titel}}</td>
             <td>{{product.price}} 	&#8364;</td>
         </tr>
     </table>

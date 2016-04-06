@@ -5,6 +5,7 @@ import de.dhbw.ds.cdn.data.User;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.data.cassandra.repository.Query;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -13,5 +14,5 @@ import java.util.UUID;
 public interface PurchRepository extends CassandraRepository<Purches> {
 
     @Query("SELECT*FROM purches WHERE user=?0")
-    Iterable<Purches> findByUserId(UUID id);
+    List<Purches> findByUserId(UUID id);
 }
