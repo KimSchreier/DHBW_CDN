@@ -3,18 +3,12 @@
     <table class="table table-striped">
         <tr>
             <th>Product</th>
-            <th>Quantity</th>
             <th>Price</th>
-            <td>Total</td>
-            <th>Date</th>
         </tr>
 
         <tr ng-repeat="product in products">
-            <td>{{product.name}}</td>
-            <td>{{product.quantity}}</td>
+            <td>{{product.title}}</td>
             <td>{{product.price}} 	&#8364;</td>
-            <td>{{product.quantity * product.price}}</td>
-            <td>{{purchase.date}}</td>
         </tr>
     </table>
 </div>
