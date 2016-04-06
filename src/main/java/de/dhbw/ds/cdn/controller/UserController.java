@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static java.util.UUID.randomUUID;
@@ -29,7 +30,7 @@ public class UserController {
 
 	@RequestMapping("/user")
 	@ResponseBody
-	public User getUserById(UUID id){
+	public User getUserById(@RequestParam(value = "id") UUID id){
 		User user = userRepository.findById(id);
 		return user;
 	}
@@ -39,6 +40,7 @@ public class UserController {
 	public User setUser(@RequestBody User user){
 		user.setId(randomUUID());
         userRepository.save(user);
+        user.setRights(new ArrayList<>());
         return user;
 	}
 

@@ -1,17 +1,18 @@
 package de.dhbw.ds.cdn.repositries;
 
+import de.dhbw.ds.cdn.data.Product;
+import de.dhbw.ds.cdn.data.Purches;
 import de.dhbw.ds.cdn.data.User;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.data.cassandra.repository.Query;
 
 import java.util.UUID;
 
+/**
+ * Created by jbeisiegel on 06.04.16.
+ */
+public interface ProductRepository extends CassandraRepository<Product> {
 
-public interface UserRepository extends CassandraRepository<User> {
-
-    @Query("SELECT*FROM users WHERE login=?0")
-    User findByLogin(String login);
-
-    @Query("SELECT*FROM users WHERE id=?0")
+    @Query("SELECT*FROM product WHERE id=?0")
     User findById(UUID id);
 }

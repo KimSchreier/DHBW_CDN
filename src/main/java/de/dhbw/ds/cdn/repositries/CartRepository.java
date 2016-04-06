@@ -1,17 +1,14 @@
 package de.dhbw.ds.cdn.repositries;
 
+import de.dhbw.ds.cdn.data.Cart;
 import de.dhbw.ds.cdn.data.User;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.data.cassandra.repository.Query;
 
 import java.util.UUID;
 
+public interface CartRepository extends CassandraRepository<Cart> {
 
-public interface UserRepository extends CassandraRepository<User> {
-
-    @Query("SELECT*FROM users WHERE login=?0")
-    User findByLogin(String login);
-
-    @Query("SELECT*FROM users WHERE id=?0")
-    User findById(UUID id);
+    @Query("SELECT*FROM cart WHERE user=?0")
+    User findByUserId(UUID id);
 }

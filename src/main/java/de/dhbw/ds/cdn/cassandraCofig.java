@@ -20,49 +20,39 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 
 @Configuration
 @PropertySource(value = { "classpath:cassandra.properties" })
-@EnableCassandraRepositories(basePackages = { "org.spring.cassandra.example.repo" })
+@EnableCassandraRepositories(basePackages = { "de.dhbw.ds.cdn" })
 public class cassandraCofig {
 
-        private static final Logger LOG = LoggerFactory.getLogger(cassandraCofig.class);
-
-        @Autowired
-        private Environment env;
-
-        @Bean
-        public CassandraClusterFactoryBean cluster() {
-
-            CassandraClusterFactoryBean cluster = new CassandraClusterFactoryBean();
-            cluster.setContactPoints(env.getProperty("cassandra.contactpoints"));
-            cluster.setPort(Integer.parseInt(env.getProperty("cassandra.port")));
-
-            return cluster;
-        }
-
-        @Bean
-        public CassandraMappingContext mappingContext() {
-            return new BasicCassandraMappingContext();
-        }
-
-        @Bean
-        public CassandraConverter converter() {
-            return new MappingCassandraConverter(mappingContext());
-        }
-
-        @Bean
-        public CassandraSessionFactoryBean session() throws Exception {
-
-            CassandraSessionFactoryBean session = new CassandraSessionFactoryBean();
-            session.setCluster(cluster().getObject());
-            session.setKeyspaceName(env.getProperty("cassandra.keyspace"));
-            session.setConverter(converter());
-            session.setSchemaAction(SchemaAction.NONE);
-
-            return session;
-        }
-
-        @Bean
-        public CassandraOperations cassandraTemplate() throws Exception {
-            return new CassandraTemplate(session().getObject());
-        }
+    @Autowired
+    private Environment environment;
+    private static final Logger LOGGER = LoggerFactory.getLogger(cassandraCofig.class);
+    @Bean
+    public CassandraClusterFactoryBean cluster() {
+        CassandraClusterFactoryBean cluster = new CassandraClusterFactoryBean();
+        cluster.setContactPoints(environment.getProperty("cassandra.contactpoints"));
+        cluster.setPort(Integer.parseInt(environment.getProperty("cassandra.port")));
+        return cluster;
     }
+    @Bean
+    public CassandraMappingContext mappingContext() {
+        return new BasicCassandraMappingContext();
+    }
+    @Bean
+    public CassandraConverter converter() {
+        return new MappingCassandraConverter(mappingContext());
+    }
+    @Bean
+    public CassandraSessionFactoryBean session() throws Exception {
+        CassandraSessionFactoryBean session = new CassandraSessionFactoryBean();
+        session.setCluster(cluster().getObject());
+        session.setKeyspaceName(environment.getProperty("cassandra.keyspace"));
+        session.setConverter(converter());
+        session.setSchemaAction(SchemaAction.NONE);
+        return session;
+    }
+    @Bean
+    public CassandraOperations cassandraTemplate() throws Exception {
+        return new CassandraTemplate(session().getObject());
+    }
+
 }
