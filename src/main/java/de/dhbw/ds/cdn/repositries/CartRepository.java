@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface CartRepository extends CassandraRepository<Cart> {
 
-    @Query("SELECT*FROM cart WHERE user=?0")
+    @Query("SELECT*FROM cart WHERE user=?0 ALLOW FILTERING")
     Cart findByUserId(UUID id);
 }

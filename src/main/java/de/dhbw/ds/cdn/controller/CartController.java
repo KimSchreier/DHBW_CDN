@@ -7,6 +7,7 @@ import de.dhbw.ds.cdn.repositries.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,6 +17,7 @@ import java.util.UUID;
 /**
  * Created by jbeisiegel on 06.04.16.
  */
+@RestController
 public class CartController {
 
     CartRepository cartRepository;
@@ -28,12 +30,17 @@ public class CartController {
     }
 
     @RequestMapping("/addToCart")
-    public Iterable<Product> addToCart(@RequestParam(value = "id") UUID id, @RequestParam(value = "user") UUID userId) {
+    public Iterable<Product> addToCart(@RequestParam(value = "id") String sid, @RequestParam(value = "user") String sUserid) {
+        UUID id = UUID.fromString(sid);
+        UUID userId = UUID.fromString(sUserid);
         Cart cart = cartRepository.findByUserId(userId);
-        if(cart.equals(null)){
+        if(cart == null){
             cart = new Cart();
             cart.setId(UUID.randomUUID());
             cart.setUserId(userId);
+            cart.setProducts(new ArrayList<>());
+        }
+        if(cart.getProducts() == null){
             cart.setProducts(new ArrayList<>());
         }
         cart.getProducts().add(id);
@@ -46,11 +53,14 @@ public class CartController {
     }
 
     @RequestMapping("/removeFromCart")
-    public Iterable<Product> removeFromCart(@RequestParam(value = "id") UUID id, @RequestParam(value = "user") UUID userId) {
+    public Iterable<Product> removeFromCart(@RequestParam(value = "id") String sid, @RequestParam(value = "user") String sUserId) {
+        UUID id = UUID.fromString(sid);
+        UUID userId = UUID.fromString(sUserId);
         Cart cart = cartRepository.findByUserId(userId);
         for(int i=0;i<cart.getProducts().size();i++){
             if(cart.getProducts().get(i).equals(id)){
                 cart.getProducts().remove(i);
+                break;
             }
         }
         cartRepository.save(cart);

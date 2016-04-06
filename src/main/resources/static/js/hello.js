@@ -28,12 +28,12 @@ angular.module('hello', [ 'ngRoute' ])
           });
       };
       $scope.addItem = function (id) {
-          $http.get('/addToCart?id='+id+'user={{user.id}}').success(function(data) {
+          $http.get('/addToCart?id='+id+'&user='+$rootScope.user.id).success(function(data) {
               $rootScope.cart = data;
           });
       };
       $scope.removeItem = function (id) {
-          $http.get('/removeFromCart?id='+id+'user={{user.id}}').success(function(data) {
+          $http.get('/removeFromCart?id='+id+'&user='+$rootScope.user.id).success(function(data) {
               $rootScope.cart = data;
           });
       };

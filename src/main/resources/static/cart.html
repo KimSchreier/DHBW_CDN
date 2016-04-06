@@ -7,7 +7,7 @@
             <th>Remove</th>
         </tr>
 
-        <tr ng-repeat="product in cart.products">
+        <tr ng-repeat="product in cart">
             <td>{{product.title}}</td>
             <td>{{product.price}} €</td>
             <td><input type="button" value="-" ng-click="removeItem(product.id)" /></td>

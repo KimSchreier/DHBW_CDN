@@ -1,6 +1,6 @@
 <h1>Awesome shop</h1>
 <div ng-show="authenticated">
-    <table class="table table-striped">
+    <table class="table table-striped" data-ng-init="getProducts()">
         <tr>
             <th>Product</th>
             <th>Price</th>

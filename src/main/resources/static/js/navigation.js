@@ -1,5 +1,5 @@
 var menu = document.querySelector('.nav');
-var anchors = menu.getElementsByTagName('a');
+var anchors = menu.getElementsByTagName('li');
 
 for (var i = 0; i < anchors.length; i += 1) {
   anchors[i].addEventListener('click', function() { clickHandler(anchors[i]) }, false);
