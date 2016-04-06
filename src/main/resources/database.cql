@@ -6,17 +6,17 @@ CREATE TABLE IF NOT EXISTS shop.users (
     login text,
     password text,
     roles list<text>,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id, login)
 );
 
-CREATE TABLE IF NOT EXISTS cart.cart (
+CREATE TABLE IF NOT EXISTS shop.cart (
     id uuid,
     user uuid,
     products list<uuid>,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id, user)
 );
 
-CREATE TABLE IF NOT EXISTS cart.product (
+CREATE TABLE IF NOT EXISTS shop.product (
     id uuid,
     category text,
     price double,
@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS cart.product (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS cart.purches (
+CREATE TABLE IF NOT EXISTS shop.purches (
     id uuid,
-    creation_date date,
+    creation_date timestamp,
     user uuid,
     products list<uuid>,
     PRIMARY KEY (id)

@@ -1,5 +1,5 @@
 <h1>Web shop</h1>
-<div ng-show="authenticated">
+<div ng-show="authenticated" data-ng-init="getProducts()">
     <table>
         <tr>
             <th>Product</th>
@@ -16,6 +16,8 @@
         </tr>
     </table>
     </div>
-<div  class="alert alert-danger" ng-show="!authenticated">
-    <p>Login to see the shop</p>
+<div ng-show="!authenticated">
+    <div  class="alert alert-danger">
+        <p>Login to see the shop</p>
+    </div>
 </div>

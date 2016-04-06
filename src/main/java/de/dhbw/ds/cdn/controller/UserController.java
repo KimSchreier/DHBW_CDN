@@ -44,14 +44,12 @@ public class UserController {
         return user;
 	}
 
-    @RequestMapping(method = RequestMethod.POST, path = "/login")
+    @RequestMapping(method = RequestMethod.POST, path = "/userLogin")
     @ResponseBody
-    @ExceptionHandler
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public User getUserById(@RequestBody User user) throws Exception {
+    public User getUserById(@RequestBody User user){
         User userDB = userRepository.findByLogin(user.getLogin());
         if(!StringUtils.equals(userDB.getPassword(),user.getPassword())){
-            throw new Exception("User not found");
+            return new User();
         }
         return userDB;
     }

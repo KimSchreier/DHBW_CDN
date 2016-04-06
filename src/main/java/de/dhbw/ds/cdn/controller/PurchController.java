@@ -27,13 +27,8 @@ public class PurchController {
     }
 
     @RequestMapping("/purches")
-    public List<Product> getProducts(@RequestParam(value = "user") UUID userId) {
-        Purches purche = purchRepository.findByUserId(userId);
-        List<UUID> productIds = purche.getProducts();
-        ArrayList<Product> products = new ArrayList<>();
-        for(UUID id : productIds){
-            products.add(productRepository.findById(id));
-        }
-        return products;
+    public Iterable<Purches> getProducts(@RequestParam(value = "user") UUID userId) {
+        Iterable<Purches> purche = purchRepository.findByUserId(userId);
+        return purche;
     }
 }
