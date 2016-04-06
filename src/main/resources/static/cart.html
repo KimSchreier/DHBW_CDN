@@ -1,6 +1,6 @@
 <h1>Your Cart</h1>
 <div ng-show="authenticated">
-    <table>
+    <table class="table table-hover">
         <tr>
             <th>Product</th>
             <th>Quantity</th>
@@ -20,7 +20,7 @@
             <td></td>
             <td> Total: {{totalPrice()}}</td>
             <td>
-                <input type="button" class="btn btn-primary" value="Save" ng-click="save()" />
+                <input type="button" class="btn btn-success" value="Save" ng-click="save()" />
                 <input type="button" class="btn btn-primary" value="Order" ng-click="order()" />
             </td>
         </tr>
