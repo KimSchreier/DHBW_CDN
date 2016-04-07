@@ -1,4 +1,4 @@
-angular.module('hello', [ 'ngRoute' ])
+angular.module('hello', [ 'ngRoute' , 'ngCookies'])
   .config(function($routeProvider, $httpProvider) {
 
 	$routeProvider.when('/', {
@@ -16,6 +16,9 @@ angular.module('hello', [ 'ngRoute' ])
     }).when('/purch', {
         templateUrl : 'purchase.html',
         controller : 'home'
+    }).when('/register', {
+        templateUrl : 'register.html',
+        controller : 'navigation'
 	}).otherwise('/');
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -56,14 +59,24 @@ angular.module('hello', [ 'ngRoute' ])
   })
 .controller('navigation',
 
-  function($rootScope, $scope, $http, $location) {
+  function($rootScope, $scope, $http, $location, $cookies) {
 
   $scope.logout = function() {
 	    $rootScope.authenticated = false;
         $rootScope.user = {};
-	}
+        $cookies.userId = "";
+	};
 
   $scope.credentials = {};
+      
+      $scope.getUser = function () {
+          var userId = $cookies.userId;
+          $http.get('/user?id='+userId).success(function(data) {
+              $rootScope.user = data;
+              $rootScope.authenticated = true;
+          });
+      };
+
   $scope.login = function() {
       $http({
           method: 'POST',
@@ -78,9 +91,29 @@ angular.module('hello', [ 'ngRoute' ])
           $scope.error = false;
           $rootScope.user = response.data;
           $rootScope.authenticated = true;
+          $cookies.userId = response.data.id;
       }, function errorCallback(response) {
           $location.path("/login");
           $scope.error = true;
       });
   };
+
+      $scope.register = function() {
+          $http({
+              method: 'POST',
+              url: '/users',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+              },
+              data: $scope.reg
+          }).then(function successCallback(response) {
+              $location.path("/login");
+              $scope.error = false;
+          }, function errorCallback(response) {
+              $location.path("/register");
+              $scope.error = true;
+          });
+      };
+
 });

@@ -13,7 +13,7 @@
 </head>
 
 <body ng-app="hello" ng-cloak class="ng-cloak">
-	<div ng-controller="navigation" class="container">
+	<div ng-controller="navigation" class="container" data-ng-init="getUser()">
 		<ul class="nav nav-pills" role="tablist">
 			<li class="active"><a href="#/">home</a></li>
 			<li ng-show="authenticated"><a href="#/cart">Cart</a></li>
