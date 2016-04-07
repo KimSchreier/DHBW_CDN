@@ -1,7 +1,7 @@
 <h1>Home</h1>
 <div ng-show="authenticated">
-	<p>Hello {{user.name}} welcome to our shop</p>
+	<p>Hello {{user.name}}, welcome to our shop</p>
 </div>
 <div  ng-show="!authenticated">
-	<p>Login to see our Products</p>
+	<p>Please <a href="#/login">login</a> to see our Products</p>
 </div>

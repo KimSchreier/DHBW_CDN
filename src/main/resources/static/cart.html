@@ -12,13 +12,13 @@
             <td>{{$index + 1}}</td>
             <td>{{product.titel}}</td>
             <td>{{product.price}} €</td>
-            <td><input type="button" value="-" class="btn btn-error" ng-click="removeItem(product.id)" /></td>
+            <td><input type="button" value="-" class="btn btn-danger" ng-click="removeItem(product.id)" /></td>
         </tr>
 
         <tr>
             <td></td>
             <td></td>
-            <td> Total: {{totalPrice}}</td>
+            <td> Total: {{totalPrice}}  €</td>
             <td>
                 <input type="button" class="btn btn-primary" value="Order" ng-click="newPurche()" />
             </td>
