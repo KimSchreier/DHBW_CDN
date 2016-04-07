@@ -30,6 +30,9 @@ angular.module('hello', [ 'ngRoute' , 'ngCookies'])
               $scope.products = data;
           });
       };
+
+      $rootScope.totalPrice=0;
+
       $scope.getPurches = function () {
           $http.get('/purches?user='+$rootScope.user.id).success(function(data) {
               $rootScope.purches = data;
@@ -38,6 +41,9 @@ angular.module('hello', [ 'ngRoute' , 'ngCookies'])
       $scope.getCart = function () {
           $http.get('/getCart?user='+$rootScope.user.id).success(function(data) {
               $rootScope.cart = data;
+              data.forEach(function(entry) {
+                  $rootScope.totalPrice += entry.price;
+              });
           });
       };
       $scope.addItem = function (id) {
@@ -47,6 +53,7 @@ angular.module('hello', [ 'ngRoute' , 'ngCookies'])
       };
       $scope.newPurche = function () {
           $rootScope.cart = [];
+          $rootScope.totalPrice = 0;
           $http.get('/placePurches?user='+$rootScope.user.id).success(function(data) {
               $rootScope.purches = data;
           });
@@ -54,6 +61,10 @@ angular.module('hello', [ 'ngRoute' , 'ngCookies'])
       $scope.removeItem = function (id) {
           $http.get('/removeFromCart?id='+id+'&user='+$rootScope.user.id).success(function(data) {
               $rootScope.cart = data;
+              $rootScope.totalPrice =0;
+              data.forEach(function(entry) {
+                  $rootScope.totalPrice += entry.price;
+              });
           });
       };
   })
