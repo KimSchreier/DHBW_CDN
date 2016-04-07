@@ -1,16 +1,18 @@
-<h1>Awesome shop</h1>
+<h1>Our Products</h1>
 <div ng-show="authenticated">
     <table class="table table-striped" data-ng-init="getProducts()">
         <tr>
+            <td>#</td>
             <th>Product</th>
             <th>Price</th>
             <th>Add</th>
         </tr>
 
         <tr ng-repeat="product in products">
+            <td>{{$index + 1}}</td>
             <td>{{product.titel}}</td>
             <td>{{product.price}} 	&#8364;</td>
-            <td><input type="button" value="+" ng-click="addItem(product.id)" /></td>
+            <td><input type="button" class="btn btn-success" value="+" ng-click="addItem(product.id)" /></td>
         </tr>
     </table>
     </div>

@@ -2,18 +2,21 @@
 <div ng-show="authenticated">
     <table class="table table-striped" data-ng-init="getCart()">
         <tr>
+            <th>#</th>
             <th>Product</th>
             <th>Price</th>
             <th>Remove</th>
         </tr>
 
         <tr ng-repeat="product in cart">
+            <td>{{$index + 1}}</td>
             <td>{{product.titel}}</td>
             <td>{{product.price}} €</td>
-            <td><input type="button" value="-" ng-click="removeItem(product.id)" /></td>
+            <td><input type="button" value="-" class="btn btn-error" ng-click="removeItem(product.id)" /></td>
         </tr>
 
         <tr>
+            <td></td>
             <td></td>
             <td> Total: {{totalPrice()}}</td>
             <td>
