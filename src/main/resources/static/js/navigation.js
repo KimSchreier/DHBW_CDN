@@ -1,4 +1,4 @@
-var menu = document.querySelector('#nav');
+var menu = document.querySelector('.nav');
 var anchors = menu.getElementsByTagName('li');
 
 for (var i = 0; i < anchors.length; i += 1) {
