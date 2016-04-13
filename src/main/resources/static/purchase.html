@@ -1,8 +1,6 @@
 <h1>Your Purchases</h1>
 <div ng-show="authenticated" data-ng-init="getPurches()">
 
-    <div ng-repeat="purche in purches">
-
     <table class="table table-striped">
         <tr>
             <th>{{purche.creationDate |  date:'medium'}}</th>
@@ -10,14 +8,18 @@
             <th>Price</th>
         </tr>
 
-        <tr ng-repeat="product in purche.products">
-            <td></td>
-            <td>{{product.titel}}</td>
-            <td>{{product.price}} 	&#8364;</td>
-        </tr>
+        <div ng-repeat="purche in purches">
+
+
+            <tr ng-repeat="product in purche.products">
+                <td></td>
+                <td>{{product.titel}}</td>
+                <td>{{product.price}} 	&#8364;</td>
+            </tr>
+        </div>
     </table>
-    </div>
 </div>
+
 <div  class="alert alert-danger" ng-show="!authenticated">
     <p>Login to see your purchases</p>
 </div>
