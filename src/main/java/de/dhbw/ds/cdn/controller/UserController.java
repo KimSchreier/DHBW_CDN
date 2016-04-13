@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -27,6 +29,9 @@ public class UserController {
 	public Iterable<User> getUsers() {
 		return userRepository.findAll();
 	}
+
+	@RequestMapping("/ip")
+	public String getIp() throws UnknownHostException {return InetAddress.getLocalHost().toString();}
 
 	@RequestMapping("/user")
 	@ResponseBody

@@ -30,7 +30,7 @@ public class cassandraCofig {
     public CassandraClusterFactoryBean cluster() {
         CassandraClusterFactoryBean cluster = new CassandraClusterFactoryBean();
         cluster.setContactPoints(environment.getProperty("cassandra.contactpoints"));
-        cluster.setPort(Integer.parseInt(environment.getProperty("cassandra.port")));
+        cluster.setPort(9042);
         return cluster;
     }
     @Bean
